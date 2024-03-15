@@ -96,10 +96,16 @@ var commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.Interac
 			return
 		}
 
+		login, ok := githubLogins[i.Member.User.ID]
+		if !ok {
+			ephemeralResponse(i, "You must use the `/identify` command to link your GitHub username with your Discord account.")
+			return
+		}
+
 		var myIssues []*github.Issue
 		for _, issue := range issues {
 			for _, assignee := range issue.Assignees {
-				if githubLogins[i.Member.User.ID] == assignee.GetLogin() {
+				if login == assignee.GetLogin() {
 					myIssues = append(myIssues, issue)
 					break
 				}
