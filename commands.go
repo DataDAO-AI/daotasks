@@ -99,7 +99,7 @@ var commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.Interac
 		var myIssues []*github.Issue
 		for _, issue := range issues {
 			for _, assignee := range issue.Assignees {
-				if assignee.GetLogin() == i.Member.User.ID {
+				if githubLogins[i.Member.User.ID] == assignee.GetLogin() {
 					myIssues = append(myIssues, issue)
 					break
 				}
