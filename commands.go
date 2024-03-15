@@ -48,10 +48,10 @@ var githubLogins = make(map[string]string)
 
 var commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
 	"help": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
-		ephemeralResponse(i, "This bot lets you read and subscribe to the DataDAO todo list."+
+		ephemeralResponse(i, "This bot lets you read from and subscribe to the DataDAO todo list."+
 			"\n\nUse the `/identify` command to link your GitHub username with your Discord account, then use `/all` and `/mine`"+
 			" to see all open tasks and open tasks assigned to you, respectively."+
-			"\n\nYou can be notified of all new tasks with `/subscribe-all`, or just tasks assigned to you with `/subscribe-mine`.")
+			"\n\nYou can be notified of all new tasks with `/subscribe-all`, or new tasks assigned to you with `/subscribe-mine`.")
 	},
 	"identify": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
 		if i.Member == nil {
